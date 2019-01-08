@@ -1,0 +1,55 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+
+<form id="calcForm" autocomplete="off">
+
+  <div class="btn-group-lg buttonContainer" role="group" aria-label="First group">
+
+    <div class="btn-group-lg" role="group" aria-label="First group">
+      <input type="text" class="form-control calcResult" id="result"
+             (keyup)="onKey($event)" value="{{ data }}" />
+    </div>
+
+    <div class="btn-group-lg" role="group" aria-label="First group">
+      <button type="button" class="btn btn-primary calcButtonDouble" (click)="clear_e()">Clear</button>
+      <button type="button" class="btn btn-secondary calcButtonDouble">(+/-)</button>
+    </div>
+
+    <div class="btn-group-lg" role="group" aria-label="First group">
+      <button type="button" class="btn btn-secondary calcButton" (click)="number1_e()">1</button>
+      <button type="button" class="btn btn-secondary calcButton" (click)="number2_e()">2</button>
+      <button type="button" class="btn btn-secondary calcButton" (click)="number3_e()">3</button>
+      <button type="button" class="btn btn-primary calcButton" (click)="actionDivide_e()">/</button>
+    </div>
+
+    <div class="btn-group-lg" role="group" aria-label="Second group">
+      <button type="button" class="btn btn-secondary calcButton" (click)="number4_e()">4</button>
+      <button type="button" class="btn btn-secondary calcButton" (click)="number5_e()">5</button>
+      <button type="button" class="btn btn-secondary calcButton" (click)="number6_e()">6</button>
+      <button type="button" class="btn btn-primary calcButton" (click)="actionMultiply_e()">x</button>
+    </div>
+
+    <div class="btn-group-lg" role="group" aria-label="Third group">
+      <button type="button" class="btn btn-secondary calcButton" (click)="number7_e()">7</button>
+      <button type="button" class="btn btn-secondary calcButton" (click)="number8_e()">8</button>
+      <button type="button" class="btn btn-secondary calcButton" (click)="number9_e()">9</button>
+      <button type="button" class="btn btn-primary calcButton" (click)="actionMinus_e()">-</button>
+    </div>
+
+    <div class="btn-group-lg" role="group" aria-label="Fourth group">
+      <button type="button" class="btn btn-secondary calcButton" (click)="number0_e()">0</button>
+      <button type="button" class="btn btn-secondary calcButton">.</button>
+      <button type="button" class="btn btn-primary calcButton" (click)="actionEqual_e()">=</button>
+      <button type="button" class="btn btn-primary calcButton" (click)="actionPlus_e()">+</button>
+    </div>
+  </div>
+
+  
+
+</form>
+
+<router-outlet></router-outlet>
