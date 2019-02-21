@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],  
 })
 export class AppComponent {
-  title = 'calculator';
+  title = 'Calculator';
   answer = 0;
   data = "";
   stored_number = 0;
@@ -50,6 +50,10 @@ export class AppComponent {
   }
   number0_e() {
     this.data += "0";
+  }
+
+  decimal_e() {
+    this.data += ".";
   }
 
   // Action Events
@@ -107,11 +111,6 @@ export class AppComponent {
     this.stored_number = 0;
     this.current_number = 0;
     this.stored_number_init = false;
-  }
-
-  saveNumber() {
-    this.stored_number = parseFloat(this.data);
-    this.data= "";
   }
 
   updateData() {
