@@ -9,9 +9,9 @@ export class AppComponent {
   title = 'Calculator';
   answer = 0;
   data = "";
-  stored_number = 0;
+  stored_number = NaN;
   stored_number_init = false;
-  current_number = 0;
+  current_number = NaN;
   action = "";
 
   onKey(event: any) {
@@ -53,33 +53,61 @@ export class AppComponent {
   }
 
   decimal_e() {
-    this.data += ".";
+    if (!this.data.includes(".")) {
+      this.data += ".";
+    }
   }
 
   // Action Events
   actionPlus_e() {
-    this.mathActions()
     this.action = "+";
+    this.mathActions();
   }
   actionMinus_e() {
-    this.mathActions()
     this.action = "-";
+    this.mathActions();
   }
   actionDivide_e() {
-    this.mathActions()
     this.action = "/";
+    this.mathActions();
   }
   actionMultiply_e() {
-    this.mathActions();
     this.action = "*";
+    this.mathActions();
   }
   actionEqual_e() {
-    console.log("actionEqual_e called... current action: " + this.action);
-    this.current_number = parseFloat(this.data);
-    console.log("\tstored_number: " + this.stored_number.toString())
-    console.log("\tcurrent_number: " + this.current_number.toString())
-    if (this.action == "+") {
+    
+    if(this.data != "") {
+      this.resolveAction();
+    }
+    else if (!this.stored_number_init)
+    {
+      this.stored_number = this.current_number;
+    }
+    this.updateData();
+  }
 
+  mathActions() {
+    this.current_number = parseFloat(this.data);
+    console.log("current_number = " + this.current_number);
+    if(!this.stored_number_init && this.stored_number != NaN) {
+      console.log("stored_number has not been initialized");
+      this.stored_number = this.current_number;
+      this.stored_number_init = true;
+    }
+    else {
+      this.resolveAction();
+      this.updateData();
+    }
+    this.data = "";
+  }
+
+  resolveAction() {
+    console.log("resolveAction called... current action: " + this.action);
+    this.current_number = parseFloat(this.data);
+    console.log("\tstored_number: " + this.stored_number.toString());
+    console.log("\tcurrent_number: " + this.current_number.toString());
+    if (this.action == "+") {
       this.stored_number = this.stored_number + this.current_number;
     }
     else if (this.action == "-") {
@@ -91,25 +119,14 @@ export class AppComponent {
     else if (this.action == "*") {
       this.stored_number = this.stored_number * this.current_number;
     }
-
-    this.updateData();
-  }
-
-  mathActions() {
-    this.current_number = parseFloat(this.data);
-    console.log("current_number = " + this.current_number);
-    if(!this.stored_number_init) {
-      console.log("stored_number has not been initialized");
-      this.stored_number = this.current_number;
-      this.stored_number_init = true;
-    }
-    this.data = "";
+    this.current_number = NaN;
   }
 
   clear_e() {
+    console.log("clear_e() called");
     this.data = "";
-    this.stored_number = 0;
-    this.current_number = 0;
+    this.stored_number = NaN;
+    this.current_number = NaN;
     this.stored_number_init = false;
   }
 
