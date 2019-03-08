@@ -8,9 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Calculator';
   data = "";
-  //stored_number = NaN;
-  //stored_number_init = false;
-  //current_number = NaN;
   action = "";
   number_vector = []; // To store all numbers entered
   operator_vector = []; // To store all operators selected
@@ -95,6 +92,16 @@ export class AppComponent {
     this.mathActions();
   }
 
+  inverse_e() {
+    //TODO
+    
+    //this.actionEqual_e(); // Finish evaluating any number entered
+    //this.operator_vector.push("*");
+    //this.number_vector.push(-1);
+    
+    //this.actionEqual_e();
+  }
+
   mathActions() {
     console.log("mathActions() called");
     
@@ -112,8 +119,6 @@ export class AppComponent {
       console.log("\tLast operator is changed to: " + this.action);
       this.operator_vector[this.operator_vector.length-1] = this.action;
     }
-
-
 
     this.resolveAction();
   }
@@ -189,8 +194,4 @@ export class AppComponent {
     console.log(output);
     return output;
   }
-  /*updateData() {
-    console.log("updateData() called... stored_number = " + this.stored_number);
-    this.data = this.stored_number.toString();
-  }*/
 }
