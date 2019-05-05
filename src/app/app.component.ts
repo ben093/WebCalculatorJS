@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import * as math from 'mathjs';
+import { element } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-root',
@@ -24,43 +26,33 @@ export class AppComponent {
   // Number events
   number1_e() {
     this.checkIfEntering("1");
-    //this.data += "2";
   }
   number2_e() {
     this.checkIfEntering("2");
-    //this.data += "2";
   }
   number3_e() {
     this.checkIfEntering("3");
-    //this.data += "3";
   }
   number4_e() {
     this.checkIfEntering("4");
-    //this.data += "4";
   }
   number5_e() {
     this.checkIfEntering("5");
-    //this.data += "5";
   }
   number6_e() {
     this.checkIfEntering("6");
-    //this.data += "6";
   }
   number7_e() {
     this.checkIfEntering("7");
-    //this.data += "7";
   }
   number8_e() {
     this.checkIfEntering("8");
-    //this.data += "8";
   }
   number9_e() {
     this.checkIfEntering("9");
-    //this.data += "9";
   }
   number0_e() {
     this.checkIfEntering("0");
-    //this.data += "0";
   }
 
   decimal_e() {
@@ -135,7 +127,7 @@ export class AppComponent {
     console.log("Number Array: ");
     this.printArray(this.data_vector);
 
-    var answer = 0;
+    /*var answer = 0;
     var current_number;
     var current_operator;
     for (var index = 0; index < this.data_vector.length; index++) {
@@ -159,6 +151,57 @@ export class AppComponent {
           answer = answer * current_number;
         }
       }
+    }*/
+
+    /*var expression = "";
+    this.data_vector.forEach((val, idx, arr) => {
+      if (!Object.is(arr.length - 1, idx)) {
+        expression += val;
+      }
+      else if (!this.valid_actions_list.includes(val)) {
+        expression += val;
+      }
+    });
+
+    console.log("\tExpression is: " + expression);
+
+    var answer = math.eval(expression);*/
+
+    /* var str_data_vector = this.data_vector.map(String);
+ 
+     const answer = math.chain(str_data_vector).done();*/
+
+    var current_var;
+
+
+    
+
+    var answer = math.bignumber(this.data_vector[0]).toString();
+    for (var index = 1; index < this.data_vector.length-1; index += 2) {
+      var current_operator = this.data_vector[index];
+      var next_num = this.data_vector[index+1]
+      if (current_operator == "+") {
+        //answer = math.add(math.bignumber(answer),  math.bignumber(next_num))
+        //answer = math.eval(answer.toString() + " + " + math.bignumber(next_num.toString()))
+        answer = math.add(math.bignumber(answer), math.bignumber(next_num)).toString()
+        console.log(" added  " + next_num.toString())
+      }
+      else if (current_operator == "-") {
+        //answer = math.eval(answer.toString() + " - " + math.bignumber(next_num.toString()))
+        answer = math.subtract(math.bignumber(answer), math.bignumber(next_num)).toString()
+        console.log(" subtracted  " + next_num.toString())
+      }
+      else if (current_operator == "/") {
+        //answer = math.eval(answer.toString() + " / " + math.bignumber(next_num.toString()))
+        answer = math.divide(math.bignumber(answer), math.bignumber(next_num)).toString()
+        console.log(" divided by  " + next_num.toString())
+      }
+      else if (current_operator == "*") {
+        //answer = math.eval(answer.toString() + " * " + math.bignumber(next_num.toString()))
+        answer = math.multiply(math.bignumber(answer), math.bignumber(next_num)).toString()
+        console.log(" multiplied by  " + next_num.toString())
+      }
+
     }
 
     console.log("\tEvaluated: " + answer.toString());
@@ -170,7 +213,6 @@ export class AppComponent {
     console.log("clear_e() called");
     this.data = "";
     this.data_vector = [];
-    //this.operator_vector = [];
     this.isEnteringNumber = true;
   }
 
